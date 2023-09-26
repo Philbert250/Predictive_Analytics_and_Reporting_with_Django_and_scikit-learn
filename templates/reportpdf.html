@@ -1,0 +1,145 @@
+{% load static %}
+
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                     <span>Time Generated: {{ timesp }}</span>
+                    <h1 class="h3 mb-2 text-gray-800">Malaria Info</h1>
+
+
+
+
+                           <h2 class="h3 mb-2 text-gray-800">All Data of Malaria Case in defferent provinces</h2>
+                            <h3 class="m-0 font-weight-bold text-primary">Northern Province</h3>
+                            <div class="table-responsive">
+
+                                <table class="table" border="" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 2px;">Year</th>
+                                            <th style="padding: 2px;">  of Cases</th>
+                                            <th style="padding: 2px;">Number of Death Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for x in Northernselect %}
+                                        <tr>
+                                            <td style="padding: 2px;">{{ x.year }}</td>
+                                            <td style="padding: 2px;">{{ x.cases}}</td>
+                                            <td style="padding: 2px;">{{ x.death_cases}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <h3 class="m-0 font-weight-bold text-primary">Southern Province</h3>
+                            <div class="table-responsive">
+
+                                <table class="table" border="" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 2px;">Year</th>
+                                            <th style="padding: 2px;">Number of Cases</th>
+                                            <th style="padding: 2px;">Number of Death Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for x in Southernselect %}
+                                        <tr>
+                                            <td style="padding: 2px;">{{ x.year }}</td>
+                                            <td style="padding: 2px;">{{ x.cases}}</td>
+                                            <td style="padding: 2px;">{{ x.death_cases}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+
+                            <h3 class="m-0 font-weight-bold text-primary">Western Province</h3>
+                            <div class="table-responsive">
+
+                                <table class="table" border="" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 2px;">Year</th>
+                                            <th style="padding: 2px;">Number of Cases</th>
+                                            <th style="padding: 2px;">Number of Death Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for x in Westernselect %}
+                                        <tr>
+                                            <td style="padding: 2px;">{{ x.year }}</td>
+                                            <td style="padding: 2px;">{{ x.cases}}</td>
+                                            <td style="padding: 2px;">{{ x.death_cases}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+
+                            <h3 class="m-0 font-weight-bold text-primary">Eastern Province</h3>
+                            <div class="table-responsive">
+
+                                <table class="table" border="" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 2px;">Year</th>
+                                            <th style="padding: 2px;">Number of Cases</th>
+                                            <th style="padding: 2px;">Number of Death Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for x in Easternselect %}
+                                        <tr>
+                                            <td style="padding: 2px;">{{ x.year }}</td>
+                                            <td style="padding: 2px;">{{ x.cases}}</td>
+                                            <td style="padding: 2px;">{{ x.death_cases}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+
+                            <h3 class="m-0 font-weight-bold text-primary">Kigali City</h3>
+                            <div class="table-responsive">
+
+                                <table class="table" border="" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 2px;">Year</th>
+                                            <th style="padding: 2px;">Number of Cases</th>
+                                            <th style="padding: 2px;">Number of Death Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for x in Kigaliselect %}
+                                        <tr>
+                                            <td style="padding: 2px;">{{ x.year }}</td>
+                                            <td style="padding: 2px;">{{ x.cases}}</td>
+                                            <td style="padding: 2px;">{{ x.death_cases}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+               
+                            <!-- <h2 class="h3 mb-2 text-gray-800">All Data's of Malaria Case in General Structure</h2>
+                            <div class="">
+                            <img src="https://www.google.com/images/srpr/logo11w.png" alt="">
+                            </div> -->
+                </div>
+

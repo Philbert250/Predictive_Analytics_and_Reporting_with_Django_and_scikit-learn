@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Malaria Cases</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Upgrade Cases data</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <form  method="POST" action="{% url 'uploadcsv' %}" accept=""  enctype="multipart/form-data">
+                                      {% csrf_token %}
+                                        <div class="form-group">
+                                            {% if message %}
+                                            <div class="alert alert-success" role="alert">
+                                                {{message}}
+                                            </div>
+                                            {% endif %}
+                                            {% if messagefailed %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{messagefailed}}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                          <label>Upload Cvs</label>
+                                          <input type="file" class="form-control" name="csv" required>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                          <input type="submit" class="btn btn-primary" value="Upgrade">
+                                        </div>
+                                      </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+
+{% endblock %}

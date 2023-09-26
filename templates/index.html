@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="{% url 'reportpdf' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Pending Requests Card Example -->
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                All Malaria cases recorded from 2016
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ sumcase.value__sum }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-file fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- Pending Requests Card Example -->
+<!-- {#                        <div class="col-xl-3 col-md-6 mb-4">#}
+{#                            <div class="card border-left-warning shadow h-100 py-2">#}
+{#                                <div class="card-body">#}
+{#                                    <div class="row no-gutters align-items-center">#}
+{#                                        <div class="col mr-2">#}
+{#                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">#}
+{#                                                All Severe cases recorded from 2016#}
+{#                                            </div>#}
+{#                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ sumsever.value__sum }}</div>#}
+{#                                        </div>#}
+{#                                        <div class="col-auto">#}
+{#                                            <i class="fas fa-file fa-2x text-gray-300"></i>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#} -->
+                        <!-- Pending Requests Card Example -->
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                All Death cases recorded from 2016
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ sumdeath.value__sum }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-file fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="card shadow">
+
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Scatter Plot: Years vs Death Cases And Show the line of predition</h6>
+
+                            </div>
+                            <img src="{{ plot_path }}" alt="Scatter Graph">
+                        </div>
+                    </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Predict for long time</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                  <div class="row">
+                                      <div class="col-12">
+
+                                    <form  method="POST" action="{% url 'predict_page' %}" accept="">
+                                      {% csrf_token %}
+                                        <div class="form-group">
+                                            {% if message %}
+                                            <div class="alert alert-success" role="alert">
+                                                {{message}}
+                                            </div>
+                                            {% endif %}
+                                            {% if messagefailed %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {{messagefailed}}
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                      <div class="form-row">
+                                        <input type="text" class="form-control" value="cases" name="casename" hidden>
+
+                                        <div class="form-group col-md-5">
+                                          <label>Province</label>
+                                          <select  class="form-control" name="province">
+                                              <option>Northern</option>
+                                              <option>Kigali</option>
+                                              <option>Southern</option>
+                                              <option>Eastern</option>
+                                              <option>Western</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                          <label>Year</label>
+                                          <select  class="form-control" name="year">
+                                              <option>2022</option>
+                                              <option>2023</option>
+                                              <option>2024</option>
+                                              <option>2025</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>.</label>
+                                          <input type="submit" class="btn btn-primary" value="Predict">
+                                        </div>
+                                      </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="col-12">
+                                        <div class="form-group">
+
+                                            {% if resultCase %}
+                                            <div class="col-12 alert alert-success" role="alert">
+                                                 Prediction of possible Cases, <br> On percentage of possible Will be
+                                               <b>{{resultCase}}% </b> 
+                                            </div>
+                                            {% endif %}
+
+                                            {% if resultDeath %}
+                                            <div class=" col-12 alert alert-warning" role="alert">
+                                                Prediction of possible Death ,  <br> On percentage of Will be
+                                               <b> {{resultDeath}}% </b>
+                                            </div>
+
+                                            {% endif %}
+                                        </div>
+                                </div>
+                                <div class="col-6">
+                                </div>
+                                  </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                    <!-- <div class="col-xl-6 col-lg-6 pt-4">
+                        <div class="card shadow">
+
+                            Card Header - Dropdown
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Scatter Plot: Years vs Cases And Show the line of predition</h6>
+
+                            </div>
+                            <img src="{{ plot_pathyear }}" alt="Scatter Graph">
+                        </div>
+                    </div> -->
+                    <div class="col-xl-6 col-lg-6 pt-4">
+
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Malaria case Overview in defferent province</h6>
+
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+
+                                <div class="chart-area">
+                                <canvas id="myChart" width="800" height="400"></canvas>
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                <script>
+                                const ctx = document.getElementById('myChart').getContext('2d');
+                                const myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels : [{% for item in cases %}{{ item.year }},{% endfor %}],
+                                        datasets: [{
+                                            label: "Increase of Malaria",
+                                            data : [{% for item in cases %}{{ item.cases }},{% endfor %}],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                                </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                </div>
+                <!-- /.container-fluid -->
+
+{% endblock %}
